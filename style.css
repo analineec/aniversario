@@ -803,12 +803,114 @@ canvas {
 }
 
 /* ══════════════════════════
-   RESPONSIVE
+   RESPONSIVE — CELULAR
 ═══════════════════════════ */
+
+/* Alvos de toque mínimos (WCAG / Material Design: 48px) */
+.btn-pixel {
+  min-height: 44px;
+  min-width: 44px;
+}
+.map-node {
+  min-height: 90px;
+}
+.modal-close {
+  min-width: 36px;
+  min-height: 36px;
+}
+
 @media (max-width: 480px) {
-  .map-grid { grid-template-columns: repeat(2, 1fr); }
-  .map-node:nth-child(4) { grid-column: auto; grid-row: auto; }
-  .map-node:nth-child(5) { grid-column: auto; grid-row: auto; }
-  .modal-box { padding: 18px; }
+  /* ─── Geral ─── */
   .game-title { font-size: 26px; }
+
+  /* ─── Botões ─── */
+  .btn-pixel {
+    padding: 14px 20px;
+    min-height: 48px;
+    font-size: 9px;
+  }
+  .btn-prev, .btn-next {
+    padding: 10px 14px;
+    min-height: 44px;
+  }
+
+  /* ─── Tela 1 — Start ─── */
+  .start-content { gap: 20px; padding: 16px; }
+  .crt-footer { font-size: 11px; }
+
+  /* ─── Tela 2 — Senha ─── */
+  .password-content { gap: 18px; padding: 16px; width: 100%; max-width: 100%; }
+  .dialog-box { padding: 14px 16px; gap: 12px; }
+  .dialog-portrait { font-size: 28px; }
+  .dialog-text { font-size: 19px; line-height: 1.45; }
+  .pixel-input { font-size: 22px; padding: 10px 12px; }
+  .feedback-msg { font-size: 18px; }
+  .input-row { gap: 8px; }
+
+  /* ─── Tela 3 — Loading ─── */
+  .loading-content { gap: 16px; padding: 20px; }
+  .loading-bar-wrapper { width: 86vw; }
+  .loading-msg { font-size: 20px; }
+
+  /* ─── Tela 4 — Mapa ─── */
+  .map-content { gap: 16px; padding: 16px; }
+  .map-sub { font-size: 17px; margin-top: 4px; }
+  .map-tip { font-size: 16px; }
+  .map-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  /* reset do posicionamento desktop */
+  .map-node:nth-child(4) { grid-column: auto; grid-row: auto; }
+  /* 5º nó centralizado no grid de 2 colunas */
+  .map-node:nth-child(5) {
+    grid-column: 1 / -1;
+    max-width: calc(50% - 6px);
+    margin: 0 auto;
+  }
+  .map-node { padding: 14px 8px; gap: 6px; }
+  .node-icon { font-size: 30px; }
+  .node-label { font-size: 7px; }
+
+  /* ─── Modais — geral ─── */
+  .modal-overlay { padding: 10px; }
+  .modal-box { padding: 16px; max-height: 88vh; }
+  .modal-icon-header { font-size: 38px; margin-bottom: 4px; }
+  .modal-title { font-size: 10px; margin-bottom: 14px; }
+
+  /* ─── Modal — Carta ─── */
+  .modal-letter { font-size: 20px; line-height: 1.75; }
+
+  /* ─── Modal — Floresta / Memórias ─── */
+  .memory-unlock-msg { font-size: 8px; margin-bottom: 12px; }
+  .floresta-slots { gap: 12px; }
+  .memory-slot { padding: 12px; min-height: 60px; }
+  .slot-icon { font-size: 24px; }
+  .slot-hint { font-size: 17px; }
+  .photo-placeholder-img { width: 150px; height: 110px; font-size: 44px; }
+  .photo-frame img { max-height: 150px; }
+  .slot-phrase { font-size: 18px; }
+
+  /* ─── Modal — Céu ─── */
+  .sky-subtitle { font-size: 17px; margin-bottom: 12px; }
+  .sky-canvas-wrapper { height: 200px; }
+  .sky-counter { font-size: 7px; margin-top: 10px; }
+
+  /* ─── Modal — Rádio ─── */
+  .radio-display { padding: 14px; margin: 8px 0; }
+  .radio-track-name { font-size: 19px; }
+  .radio-artist { font-size: 16px; }
+  .radio-controls { gap: 8px; margin: 10px 0 4px; }
+  .radio-playlist { max-height: 110px; }
+  .playlist-item { font-size: 17px; padding: 7px 10px; }
+
+  /* ─── Modal — Final / Lago ─── */
+  .achievement-icon { font-size: 32px; }
+  .achievement-label { font-size: 8px; }
+  .achievement-title { font-size: 10px; }
+  .level-badge { font-size: 9px; padding: 5px 10px; }
+  .level-num { font-size: 26px; }
+  .final-separator { font-size: 15px; letter-spacing: 2px; }
+  .final-question { font-size: 22px; }
+  .secret-text { font-size: 20px; }
 }

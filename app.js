@@ -206,7 +206,7 @@ function initPasswordScreen() {
   initStars('stars-canvas-2');
 
   const tw = $('tw-password');
-  typewriter(tw, 'Existe um cheiro que sempre me lembra você. Digite ele ♡', 35);
+  typewriter(tw, 'A senha é o cheiro que sempre me lembra você ♡', 35);
 
   const input = $('password-input');
   const feedback = $('password-feedback');
@@ -249,7 +249,8 @@ function initPasswordScreen() {
   input.addEventListener('keydown', e => {
     if (e.key === 'Enter') { playClickSound(); checkPassword(); }
   });
-  input.focus();
+  // só foca automaticamente em desktop — no celular o teclado abre ao tocar no campo
+  if (!('ontouchstart' in window)) input.focus();
 }
 
 function spawnHearts() {
@@ -710,7 +711,7 @@ function fullScreenHearts() {
 document.addEventListener('DOMContentLoaded', () => {
   initStartScreen();
 
-  // Easter egg: Konami code → mensagem secreta
+  // Easter egg: Konami code (teclado)
   const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','l','u'];
   let konamiIdx = 0;
   document.addEventListener('keydown', e => {
@@ -728,6 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
           box-shadow: 4px 4px 0 #8a6a00;
           animation: slideUp 0.4s ease-out;
           letter-spacing: 2px; text-align: center; line-height: 1.7;
+          max-width: 90vw;
         `;
         toast.textContent = '✦ Mensagem especial encontrada! ✦\nvocê é incrível, amorzinho ♡';
         document.body.appendChild(toast);
@@ -737,4 +739,73 @@ document.addEventListener('DOMContentLoaded', () => {
       konamiIdx = 0;
     }
   });
+
+  // Easter egg mobile (gestos de swipe)
+  (function initMobileEasterEgg() {
+    const KONAMI_MOBILE = [
+      'up','up',
+      'down','down',
+      'left','right',
+      'left','right',
+      'tap','tap'
+    ];
+    let mobileIdx = 0;
+    let startX = 0;
+    let startY = 0;
+
+    document.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
+      const dx = endX - startX;
+      const dy = endY - startY;
+
+      let action = 'tap';
+      if (Math.abs(dx) > 40 || Math.abs(dy) > 40) {
+        if (Math.abs(dx) > Math.abs(dy)) {
+          action = dx > 0 ? 'right' : 'left';
+        } else {
+          action = dy > 0 ? 'down' : 'up';
+        }
+      }
+
+      if (action === KONAMI_MOBILE[mobileIdx]) {
+        mobileIdx++;
+        if (mobileIdx === KONAMI_MOBILE.length) {
+          mobileIdx = 0;
+          playAchievementSound();
+          const toast = document.createElement('div');
+          toast.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0d0a14;
+            border: 3px solid #ffd700;
+            padding: 14px 24px;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 9px;
+            color: #ffd700;
+            z-index: 9999;
+            box-shadow: 4px 4px 0 #8a6a00;
+            letter-spacing: 2px;
+            text-align: center;
+            line-height: 1.7;
+            white-space: pre-line;
+            max-width: 90vw;
+            animation: slideUp 0.4s ease-out;
+          `;
+          toast.textContent = '✦ Mensagem especial encontrada! ✦\nvocê é incrível, amorzinho ♡';
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 3500);
+        }
+      } else {
+        mobileIdx = 0;
+      }
+    }, { passive: true });
+  })();
 });
