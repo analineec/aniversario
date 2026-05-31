@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOVE.EXE — Para Amorzinho ♡</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- TELA 1 — START SCREEN                      -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="screen-start" class="screen active">
+    <canvas id="stars-canvas"></canvas>
+    <div class="start-content">
+      <div class="title-container">
+        <div class="pixel-hearts-top">
+          <span class="ph">♥</span><span class="ph">♥</span><span class="ph">♥</span>
+        </div>
+        <h1 class="game-title">LOVE<span class="dot-exe">.EXE</span></h1>
+        <div class="title-sub">★ edição especial ★</div>
+        <div class="title-version">v26.0 — para amorzinho</div>
+      </div>
+
+      <div class="press-start-wrapper">
+        <div class="blink-text">✦ PRESS START ✦</div>
+      </div>
+
+      <button class="btn-pixel btn-start" id="btn-start">
+        <span>[ START ]</span>
+      </button>
+
+      <div class="crt-footer">© 2025 FEITO COM ♥ PARA VOCÊ</div>
+    </div>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- TELA 2 — SENHA                             -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="screen-password" class="screen">
+    <canvas id="stars-canvas-2"></canvas>
+    <div class="password-content">
+      <div class="dialog-box">
+        <div class="dialog-portrait">♡</div>
+        <div class="dialog-text" id="dialog-text">
+          <span class="typewriter" id="tw-password">A senha é o cheiro que sempre me lembra você ♡</span>
+        </div>
+      </div>
+
+      <div class="input-row">
+        <span class="cursor-label">&gt;</span>
+        <input
+          type="text"
+          id="password-input"
+          class="pixel-input"
+          placeholder="__________"
+          maxlength="20"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <button class="btn-pixel" id="btn-enter">[ confirmar ]</button>
+
+      <div id="password-feedback" class="feedback-msg"></div>
+
+      <div class="hearts-burst" id="hearts-burst"></div>
+    </div>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- TELA 3 — LOADING / TRANSIÇÃO               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="screen-loading" class="screen">
+    <div class="loading-content">
+      <div class="loading-title">LOVE.EXE</div>
+      <div class="loading-msg" id="loading-msg">Carregando memórias...</div>
+      <div class="loading-bar-wrapper">
+        <div class="loading-bar" id="loading-bar"></div>
+      </div>
+      <div class="loading-pct" id="loading-pct">0%</div>
+      <div class="loading-hearts">♥ ♥ ♥</div>
+    </div>
+    <div class="scanlines"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- TELA 4 — MAPA PRINCIPAL                    -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="screen-map" class="screen">
+    <canvas id="stars-canvas-3"></canvas>
+    <div class="map-content">
+      <div class="map-header">
+        <div class="map-title">✦ MAPA DO AMOR ✦</div>
+        <div class="map-sub">Escolha um lugar para explorar</div>
+      </div>
+
+      <div class="map-grid">
+        <div class="map-node" id="node-casa" data-place="casa">
+          <div class="node-icon">🏡</div>
+          <div class="node-label">Nosso Lar</div>
+          <div class="node-glow"></div>
+        </div>
+        <div class="map-node" id="node-floresta" data-place="floresta">
+          <div class="node-icon">📸</div>
+          <div class="node-label">Memórias</div>
+          <div class="node-glow"></div>
+        </div>
+        <div class="map-node" id="node-ceu" data-place="ceu">
+          <div class="node-icon">⭐</div>
+          <div class="node-label">Céu</div>
+          <div class="node-glow"></div>
+        </div>
+        <div class="map-node" id="node-radio" data-place="radio">
+          <div class="node-icon">📻</div>
+          <div class="node-label">Rádio</div>
+          <div class="node-glow"></div>
+        </div>
+        <div class="map-node" id="node-lago" data-place="lago">
+          <div class="node-icon">💖</div>
+          <div class="node-label">Nosso Amor</div>
+          <div class="node-glow"></div>
+        </div>
+      </div>
+
+      <div class="map-tip">♡ clique em qualquer lugar para explorar ♡</div>
+    </div>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- MODAL — CASA                               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="modal-casa" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" data-modal="casa">✕</button>
+      <div class="modal-icon-header">🏡</div>
+      <div class="modal-title">Nosso Lar</div>
+      <div class="modal-letter" id="letter-text"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- MODAL — FLORESTA                           -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="modal-floresta" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" data-modal="floresta">✕</button>
+      <div class="modal-icon-header">📸</div>
+      <div class="modal-title">Memórias</div>
+      <div class="memory-unlock-msg">✦ Memória desbloqueada ♡ ✦</div>
+      <div class="floresta-slots" id="floresta-slots">
+        <div class="memory-slot" data-index="0">
+          <div class="slot-placeholder"><span class="slot-icon">📷</span><span class="slot-hint">clique para revelar</span></div>
+          <div class="slot-revealed hidden"><div class="photo-frame"><div class="photo-placeholder-img">📸</div></div><div class="slot-phrase">"Entre bilhões de pessoas, meu coração escolheu você ♡"</div></div>
+        </div>
+        <div class="memory-slot" data-index="1">
+          <div class="slot-placeholder"><span class="slot-icon">📷</span><span class="slot-hint">clique para revelar</span></div>
+          <div class="slot-revealed hidden"><div class="photo-frame"><div class="photo-placeholder-img">📸</div></div><div class="slot-phrase">"Você faz meu coração agir igual criança feliz ♡"</div></div>
+        </div>
+        <div class="memory-slot" data-index="2">
+          <div class="slot-placeholder"><span class="slot-icon">📷</span><span class="slot-hint">clique para revelar</span></div>
+          <div class="slot-revealed hidden"><div class="photo-frame"><div class="photo-placeholder-img">📸</div></div><div class="slot-phrase">"Te amar é a parte mais bonita da minha vida ♡"</div></div>
+        </div>
+        <div class="memory-slot" data-index="3">
+          <div class="slot-placeholder"><span class="slot-icon">📷</span><span class="slot-hint">clique para revelar</span></div>
+          <div class="slot-revealed hidden"><div class="photo-frame"><div class="photo-placeholder-img">📸</div></div><div class="slot-phrase"> A única coisa que mudou foi a altura ♡"</div></div>
+        </div>
+        <div class="memory-slot" data-index="4">
+          <div class="slot-placeholder"><span class="slot-icon">📷</span><span class="slot-hint">clique para revelar</span></div>
+          <div class="slot-revealed hidden"><div class="photo-frame"><div class="photo-placeholder-img">📸</div></div><div class="slot-phrase">"Sempre linda, até no modo doida ♡"</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- MODAL — CÉU                                -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="modal-ceu" class="modal-overlay">
+    <div class="modal-box modal-sky">
+      <button class="modal-close" data-modal="ceu">✕</button>
+      <div class="modal-icon-header">⭐</div>
+      <div class="modal-title">O Céu</div>
+      <div class="sky-subtitle">Clique nas estrelas para descobrir mensagens escondidas</div>
+      <div class="sky-canvas-wrapper">
+        <div id="sky-stars-container"></div>
+        <div id="star-message-bubble" class="star-bubble hidden"></div>
+      </div>
+      <div class="sky-counter" id="sky-counter">0 / 6 estrelas encontradas</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- MODAL — RÁDIO                              -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="modal-radio" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" data-modal="radio">✕</button>
+      <div class="modal-icon-header">📻</div>
+      <div class="modal-title">Rádio Amor FM</div>
+      <div class="radio-display">
+        <div class="radio-wave" id="radio-wave">
+          <div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div><div class="wave-bar"></div>
+          <div class="wave-bar"></div>
+        </div>
+        <div class="radio-track-name" id="radio-track">♩ carregando... ♩</div>
+        <div class="radio-artist" id="radio-artist">para você ♡</div>
+      </div>
+      <div class="radio-controls">
+        <button class="btn-pixel btn-prev" id="btn-prev">[ ◀◀ ]</button>
+        <button class="btn-pixel btn-play" id="btn-play">[ ▶ tocar ]</button>
+        <button class="btn-pixel btn-next" id="btn-next">[ ▶▶ ]</button>
+      </div>
+      <div class="radio-playlist" id="radio-playlist"></div>
+      <audio id="audio-player" preload="auto"></audio>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- MODAL — LAGO (FINAL)                       -->
+  <!-- ══════════════════════════════════════════ -->
+  <div id="modal-lago" class="modal-overlay">
+    <div class="modal-box modal-final">
+      <button class="modal-close" data-modal="lago">✕</button>
+      <div class="modal-icon-header">💖</div>
+      <div class="modal-title">Nosso Amor</div>
+      <div class="achievement-header">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-label">Achievement Unlocked!</div>
+      </div>
+      <div class="achievement-title">Minha Pessoa Favorita ♡</div>
+      <div class="achievement-level">
+        <span class="level-badge">LEVEL <span class="level-num">26</span></span>
+        <span class="level-text">desbloqueado</span>
+      </div>
+      <div class="final-separator">──────────────</div>
+      <div class="final-question">Continuar nossa história?</div>
+      <div class="final-options">
+        <button class="btn-pixel btn-sim" id="btn-sim">&gt; Sim ♡</button>
+      </div>
+      <div id="final-secret" class="final-secret hidden">
+        <div class="secret-text" id="final-secret-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- AUDIO GLOBAL (sons de UI)                  -->
+  <!-- ══════════════════════════════════════════ -->
+  <audio id="sfx-click" src="assets/audio/click.mp3" preload="auto"></audio>
+  <audio id="sfx-success" src="assets/audio/success.mp3" preload="auto"></audio>
+  <audio id="sfx-error" src="assets/audio/error.mp3" preload="auto"></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
