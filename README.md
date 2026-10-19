@@ -1,140 +1,154 @@
-# 💾 LOVE.EXE — Guia de Personalização ♡
+# LOVE.EXE — Guia de Personalização
 
-Parabéns! O site da Lucilly está pronto. Aqui está como personalizar cada detalhe.
+O site LOVE.EXE foi criado como um presente de aniversário para a Lucilly, com fotos, músicas, mensagens e algumas surpresas escondidas.
 
----
+Neste guia estão as instruções para personalizar o site, trocar os arquivos e publicá-lo na internet.
 
-## 📁 Estrutura de Arquivos
+## Estrutura dos arquivos
 
-```
+```text
 love-exe/
-├── index.html       ← estrutura do site
-├── style.css        ← visual e cores
-├── app.js           ← lógica e interações
+├── index.html
+├── style.css
+├── app.js
 └── assets/
     ├── img/
-    │   ├── mem1.jpg  ← foto 1 (Floresta das Memórias)
-    │   ├── mem2.jpg  ← foto 2
-    │   └── mem3.jpg  ← foto 3
+    │   ├── mem1.jpg
+    │   ├── mem2.jpg
+    │   └── ...
     └── audio/
-        ├── musica.mp3  ← música da Pitty (ou outra)
-        ├── click.mp3   ← som de clique (opcional)
-        ├── success.mp3 ← som de senha correta (opcional)
-        └── error.mp3   ← som de erro (opcional)
+        ├── musica1.mp3
+        ├── musica2.mp3
+        └── musica3.mp3
 ```
 
-> **Nota:** Se os arquivos de áudio não existirem, o site gera sons retrô automaticamente via Web Audio API. Os sons são fofos e funcionam sem nenhum arquivo! 🎵
+- `index.html`: estrutura das páginas.
+- `style.css`: cores, fontes e aparência do site.
+- `app.js`: interações, mensagens e configurações.
+- `assets/img/`: fotos utilizadas no site.
+- `assets/audio/`: músicas e efeitos sonoros.
 
----
+## Como adicionar as fotos
 
-## 🖼️ Adicionando Fotos (8 fotos)
+1. Coloque as fotos na pasta `assets/img/`.
+2. Renomeie os arquivos para `mem1.jpg`, `mem2.jpg` e assim por diante, até `mem8.jpg`.
+3. Confira se os nomes dos arquivos correspondem aos utilizados no código.
 
-1. Coloque as fotos na pasta `assets/img/`
-2. Renomeie para `mem1.jpg`, `mem2.jpg`, ..., `mem8.jpg`
-3. Formatos aceitos: `.jpg`, `.jpeg`, `.png`, `.webp`
+O site aceita imagens nos formatos JPG, JPEG, PNG e WEBP, desde que o código esteja configurado para localizar os arquivos corretamente.
 
-## 🎵 Adicionando as Músicas (3 músicas)
+## Como trocar as músicas
 
-1. Coloque os arquivos em `assets/audio/`
-2. Renomeie para `musica1.mp3`, `musica2.mp3`, `musica3.mp3`
-3. Para mudar os nomes que aparecem na tela, abra `app.js` e edite:
+Coloque os arquivos de áudio na pasta `assets/audio/` e nomeie-os como `musica1.mp3`, `musica2.mp3` e `musica3.mp3`.
+
+Para alterar os nomes das músicas e dos artistas exibidos na tela, abra o arquivo `app.js` e procure pela variável `playlist`:
+
 ```javascript
 const playlist = [
-  { file: 'assets/audio/musica1.mp3', name: 'O Mundo Acaba Hoje', artist: 'Pitty ♡' },
-  { file: 'assets/audio/musica2.mp3', name: 'Música 2', artist: 'para você ♡' },
-  { file: 'assets/audio/musica3.mp3', name: 'Música 3', artist: 'para você ♡' },
+  {
+    file: 'assets/audio/musica1.mp3',
+    name: 'O Mundo Acaba Hoje',
+    artist: 'Pitty ♡'
+  },
+  {
+    file: 'assets/audio/musica2.mp3',
+    name: 'Música 2',
+    artist: 'para você ♡'
+  },
+  {
+    file: 'assets/audio/musica3.mp3',
+    name: 'Música 3',
+    artist: 'para você ♡'
+  },
 ];
 ```
 
----
+Substitua os nomes pelos das músicas escolhidas. Se algum arquivo de áudio não estiver disponível, o site também pode gerar efeitos sonoros retrô automaticamente, conforme a implementação do código.
 
-## 💌 Personalizando a Carta (Casa 🏠)
+## Como editar a carta de aniversário
 
-Abra `app.js` e procure por:
+Para personalizar a mensagem exibida na seção da casa, abra o `app.js` e procure pela variável `lines`.
+
 ```javascript
 const lines = [
   'Feliz 26 anos pra minha pessoa favorita.',
   '',
   '8 anos depois… e você ainda continua',
-  ...
 ];
 ```
-Edite as linhas como quiser. Linhas vazias (`''`) viram espaços.
 
----
+Edite as frases como preferir. As linhas vazias podem ser usadas para separar os parágrafos.
 
-## ⭐ Mensagens do Céu
+## Como alterar as mensagens das estrelas
 
-Abra `app.js` e procure por:
-```javascript
-const starMessages = [
-  'obrigada por nunca desistir da gente ♡',
-  ...
-];
-```
-Você pode mudar qualquer mensagem.
+No arquivo `app.js`, procure pela variável `starMessages`. É nela que ficam as mensagens exibidas ao interagir com as estrelas.
 
----
+Você pode substituir os textos pelas lembranças, frases ou mensagens que quiser.
 
-## 🔐 Mudando a Senha
+## Como mudar a senha
 
-Abra `app.js` e procure por:
+Procure no `app.js` pela linha:
+
 ```javascript
 const SENHA = 'baunilha';
 ```
-Troque por outra palavra especial para vocês!
 
----
+Troque `baunilha` pela palavra escolhida. Lembre-se de manter as aspas e respeitar a sintaxe do JavaScript.
 
-## 🎨 Mudando as Cores
+**Importante:** essa senha funciona como uma interação do site, não como um mecanismo seguro para proteger informações privadas.
 
-Abra `style.css` e edite as variáveis no topo:
+## Como personalizar as cores
+
+Abra o arquivo `style.css` e procure pelas variáveis no início do arquivo:
+
 ```css
 :root {
-  --pink:      #ffb3d1;   /* rosa principal */
-  --lilac:     #d4b8e0;   /* lilás */
-  --cream:     #fff5e6;   /* creme */
-  --bg:        #0d0a14;   /* fundo escuro */
+  --pink: #ffb3d1;
+  --lilac: #d4b8e0;
+  --cream: #fff5e6;
+  --bg: #0d0a14;
 }
 ```
 
----
+Altere os códigos de cores para mudar a aparência do site. As variáveis representam o rosa principal, o lilás, o tom creme e o fundo escuro.
 
-## 🌐 Como Hospedar
+## Como publicar o site
 
-### Opção 1 — Netlify Drop (gratuito, mais fácil)
-1. Acesse https://netlify.com/drop
-2. Arraste a pasta `love-exe/` inteira
-3. Receba um link para enviar para a Lucilly!
+### Netlify Drop
 
-### Opção 2 — GitHub Pages (gratuito)
-1. Crie um repositório no GitHub
-2. Suba os arquivos
-3. Ative GitHub Pages nas configurações
+1. Acesse https://app.netlify.com/drop.
+2. Arraste a pasta do projeto para a área indicada.
+3. Aguarde a publicação e copie o link gerado.
 
-### Opção 3 — Abrir local
-Só abrir o `index.html` no navegador. 
-(Áudios podem não funcionar localmente por restrições de segurança — use um servidor simples)
+### GitHub Pages
+
+1. Crie um repositório no GitHub.
+2. Envie os arquivos do projeto.
+3. Acesse as configurações do repositório e habilite o GitHub Pages.
+4. Aguarde a publicação do site.
+
+### Executar no computador
+
+Se quiser abrir o projeto localmente, você pode iniciar um servidor usando Python.
+
+No terminal, entre na pasta `love-exe` e execute:
 
 ```bash
-# Se tiver Python:
-cd love-exe
 python -m http.server 8080
-# Acesse: http://localhost:8080
 ```
 
----
+Depois, acesse http://localhost:8080 no navegador.
 
-## 🥚 Easter Eggs Incluídos
+Usar um servidor local também ajuda a evitar problemas com o carregamento de alguns recursos, como os arquivos de áudio.
 
-- **Konami Code** no teclado: ↑↑↓↓←→←→BA → mensagem secreta
-- **Céu**: 6 estrelas escondidas com mensagens
-- **Floresta**: fotos desbloqueáveis ao clicar
-- **Lago**: mensagem final surpresa após clicar em "Sim ♡"
+## Surpresas escondidas
 
----
+O site conta com algumas interações extras:
 
-## ❤️ Feito com amor
+- **Código Konami:** sequência de teclas que revela uma mensagem secreta.
+- **Estrelas:** seis estrelas com mensagens escondidas.
+- **Floresta das Memórias:** fotos que podem ser desbloqueadas ao clicar.
+- **Lago:** uma surpresa final após clicar em “Sim ♡”.
 
-Este site foi criado especialmente para o aniversário da Lucilly.
-Cada pixel foi pensado com carinho. ♡
+## Sobre o projeto
+
+O LOVE.EXE foi desenvolvido especialmente para comemorar o aniversário da Lucilly. A proposta é reunir fotos, músicas e mensagens em um só lugar, criando uma experiência personalizada com referências à história de vocês.
