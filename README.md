@@ -10,6 +10,10 @@ Site criado como presente de aniversário para a Lucilly, reunindo fotos, músic
 - Mensagens escondidas e easter eggs;
 - Identidade visual em tons de rosa, lilás e fundo escuro.
 
+## Acesso
+
+**Senha:** `baunilha`
+
 ## Tecnologias
 
 - HTML
